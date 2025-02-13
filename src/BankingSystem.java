@@ -68,18 +68,18 @@ public class BankingSystem {
     private static void login(Scanner scanner) {
         try (Connection connection = connect()){
             System.out.println("Enter your user name: ");
-            String accountName = scanner.nextLine();
+            String accountId = scanner.nextLine();
             System.out.println("Enter your password: ");
             String password = scanner.nextLine();
             String sqlStatement = "SELECT * FROM users WHERE user_name = ? AND password = ?";
             PreparedStatement statement = connection.prepareStatement(sqlStatement);
-            statement.setString(1, accountName);
+            statement.setString(1, accountId);
             statement.setString(2, password);
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()){
                 System.out.println("Login Successful ...");
-                //TODO: Implement the banking operations
+                userMenu(scanner,accountId);
             }else {
                 System.out.println("Invalid username or password");
             }
@@ -88,6 +88,10 @@ public class BankingSystem {
             System.out.println("Error connecting to database");
             e.printStackTrace();
         }
+    }
+
+    private static void userMenu(Scanner scanner, String accountId) {
+
     }
 }
 
