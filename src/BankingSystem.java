@@ -1,15 +1,19 @@
+import DB.DatabaseConnection;
+
 import java.sql.*;
 import java.util.Scanner;
 
 public class BankingSystem {
-    private static final String URL = "jdbc:mysql://localhost:3306/banking_system";
-    private static final String USER = "root";
-    private static final String PASSWORD = "";
 
-
-    private static Connection connect() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+    public static Connection connect() throws SQLException {
+        return DatabaseConnection.getConnection();
     }
+
+
+
+
+
+
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
